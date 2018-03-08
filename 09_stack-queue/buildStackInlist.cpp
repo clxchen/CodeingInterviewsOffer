@@ -1,6 +1,8 @@
 
 #include "cstack.h"
 #include <list>
+#include <exception>
+
 
 using namespace std;
 
