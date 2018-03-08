@@ -1,0 +1,71 @@
+
+bool Find(int *matrix, int rows, int columns,int value)
+{
+	bool find = false;
+	if( nullptr == matrix || rows <= 0 || columns <=0)
+		return find;
+	
+	int row = 0, column = columns;
+	while(row < rows && column >=0)
+	{
+		if(*(matrix + row*columns + column) == value)
+		{
+			find = true;
+			break;	
+		}
+		else
+		{
+			if(*(matrix + row*columns + column) > value)
+				--column;
+			else
+				++row;	
+		}	
+	}
+	return find;	
+}
+
+
+#include<iostream>
+using namespace std;
+
+void test1()
+{
+	int m[3][3] = {{1,2,3},{4,5,6},{7,8,9}};
+	auto res = Find(&m[0][0],3,3,4);
+	if(res == false) 
+		cout<< "test1: no find or input error"<<endl;
+	else
+		cout<< "test1 :find " << endl;	
+	
+}
+
+void test2()
+{
+	int m[3][3] = {{1,2,3},{4,5,6},{7,8,10}};
+	auto res = Find(&m[0][0],3,3,9);
+	if(res == false) 
+		cout<< "test2: no find or input error"<<endl;
+	else
+		cout<< "test2 :find " << endl;	
+	
+}
+
+void test3()
+{
+	int *m = nullptr;
+	auto res = Find(m,3,3,9);
+	if(res == false) 
+		cout<< "test3: no find or input error"<<endl;
+	else
+		cout<< "test3 :find " << endl;	
+	
+}
+
+int main()
+{
+	test1();
+	test2();
+	test3();
+	return 0;	
+	
+}
