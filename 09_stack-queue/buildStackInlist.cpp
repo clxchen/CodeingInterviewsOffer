@@ -1,42 +1,34 @@
-
 #include "cstack.h"
-#include <list>
-#include <exception>
+#include <iostream>
+
+
+
 
 
 using namespace std;
 
-template< typename T> void CStack::myPush( const T& t)
+int main()
 {
-  if(list1.size() != 0)
-      list1.push_back(t);
-  else if(list2.size() != 0)
-      list2.push_back(t);
-  else
-      throw new exception("stack out of order");
-}
-
-template< typename T>  T CStack::myPop(void)
-{
-   T temp;
-  if(list1.size() != 0)
-  {
-    while(list1.size() > 1)
-    {
-        list2.push_back(list1.pop_front()); 
-    }
-    temp =  list1.pop_front();
-  }
-  else if(list2.size() != 0)
-  {
-    while(list2.size() > 1)
-    {
-        list1.push_back(list2.pop_front()); 
-    }
-    temp = return list2.pop_front();  
-  }
-  else
-   throw new exception("stack is empty");
-   
-   return temp;
+	CStack<int> ss =	CStack<int>();
+	
+	try
+	{
+	
+		for(int i = 0; i < 20 ;i++)
+		{
+			ss.myPush(i);
+		}
+		auto num = ss.size();
+		for(int i = 0; i < num ;i++)
+		{
+			cout<< "refer:"<<i <<endl;
+			cout<< ss.myPop() << endl;
+		}
+		
+	}
+	catch(exception)
+	{
+		 cout << "error" << endl;
+	}
+	
 }
